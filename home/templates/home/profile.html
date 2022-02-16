@@ -1,0 +1,155 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+{% block header %}
+    <link href="{% static "admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="header-title">{{request.user}}'s Profile</h4>
+            
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-selected="false">
+                        <i class="dripicons-home mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Home</span> 
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-selected="false">
+                        <i class="dripicons-user mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Profile</span>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#messages" role="tab" aria-selected="true">
+                        <i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> <span class="d-none d-md-inline-block">Change Password</span>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
+                        <i class="dripicons-gear mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Settings</span>
+                    </a>
+                </li> -->
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content p-3">
+                <div class="tab-pane" id="home" role="tabpanel">
+                    <p class="mb-0">
+                        Raw denim you probably haven't heard of them jean shorts Austin.
+                        Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
+                        cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
+                        butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
+                        qui irure terry richardson ex squid. Aliquip placeat salvia cillum
+                        iphone. Seitan aliquip quis cardigan american apparel, butcher
+                        voluptate nisi qui.
+                    </p>
+
+                
+    
+                    <div class="form-group row">
+                        <label for="example-search-input" class="col-md-2 col-form-label">Search</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="search" value="How do I shoot web" id="example-search-input">
+                        </div>
+                    </div>
+                     
+                    
+                </div>
+                <div class="tab-pane" id="profile" role="tabpanel">
+                    <p class="mb-0">
+                        Food truck fixie locavore, accusamus mcsweeney's marfa nulla
+                        single-origin coffee squid. Exercitation +1 labore velit, blog
+                        sartorial PBR leggings next level wes anderson artisan four loko
+                        farm-to-table craft beer twee. Qui photo booth letterpress,
+                        commodo enim craft beer mlkshk aliquip jean shorts ullamco ad
+                        vinyl cillum PBR. Homo nostrud organic, assumenda labore
+                        aesthetic magna delectus mollit.
+                    </p>
+                </div>
+                <div class="tab-pane active" id="messages" role="tabpanel">
+                  
+                <div class="form-group mb-4">
+                    
+                    <label>{{ form.phone_number.label_tag }}</label>
+                    <div class="input-group">
+                        {{ form.phone_number }}
+                        
+                    </div>
+                </div>
+                    
+                    <form action="{% url 'home:profile' %}" method="POST">{% csrf_token %}
+                        <div class="form-group row">
+                            {{ form.oldpass.errors }}
+                            <label for="example-search-input" class="col-md-2 col-form-label">Old Password</label>
+                            <div class="col-md-4">
+                                {{ form.oldpass }}
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ form.newpass.errors }}
+                            <label for="example-search-input" class="col-md-2 col-form-label">New Password</label>
+                            <div class="col-md-4">
+                                {{ form.newpass }}
+                              
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ form.confirmpass.errors }}
+                            <label for="example-search-input" class="col-md-2 col-form-label">Confirm New Password</label>
+                            <div class="col-md-4">
+                                {{ form.confirmpass }}
+                              
+                            </div>
+                        </div>
+
+                        
+
+                            <div class="col-auto">
+                                
+                                <div class="mt-3 mr-sm-2">
+                                    <button type="submit" class="btn btn-primary mt-2">Change Password</button>
+                                </div>
+                            
+                            </div>
+                    </form>
+                 
+                </div>
+                <div class="tab-pane" id="settings" role="tabpanel">
+                    <p class="mb-0">
+                        Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
+                        art party before they sold out master cleanse gluten-free squid
+                        scenester freegan cosby sweater. Fanny pack portland seitan DIY,
+                        art party locavore wolf cliche high life echo park Austin. Cred
+                        vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
+                        farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral,
+                        mustache.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footer %}
+    <script src="{% static "admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/pages/form-advanced.init.js" %}"></script>
+    <script src="{% static "admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
+{% endblock %}
+
+

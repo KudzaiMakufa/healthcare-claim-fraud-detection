@@ -1,0 +1,60 @@
+{% load static %}
+
+{% load menu_generator %}
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title">Menu</li>
+
+                            {% get_menu "NAV_MENU_LEFT" as left_menu %}
+                            
+                                {% for item in left_menu %}
+                                    
+                                   
+                                    {% if item.submenu %}
+                                    <li>
+                                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                            <i class="{{item.icon_class}}"></i>
+                                            <span>{{ item.name}}</span>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="false">
+                                            
+
+                                            {% for menu in item.submenu %}
+                                                <li><a href="{{menu.url}}">{{ menu.name}}</a></li>
+                                                
+                                            {% endfor  %}
+                                           
+                                            
+                                        </ul>
+                                    </li>
+
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ item.url }}" class="waves-effect">
+                                                <i class="{{ item.icon_class }}"></i><span class="badge badge-pill badge-success float-right"></span>
+                                                <span>{{ item.name}}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    
+                                {% endfor %}
+ 
+
+                         
+
+                           
+                      
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->

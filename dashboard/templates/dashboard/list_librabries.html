@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block header %}
+    <link href="{% static "admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+    <style>
+        input[type="text"]:disabled {
+        background: #dddddd;
+}
+    </style>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        
+        <a href="{% url 'dashboard:index' %}" class="btn btn-lg btn-success float-right">Capture Claim</a>
+     
+    </div>
+    <br>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+
+             
+                <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        
+                        <th>Provider ID </th>
+                        <th>Physician ID</th>
+                        <th>Operating Physician</th>
+                        <th>Patient</th>
+                        <th>Is Fraudulent  </th>
+                        <th>Action  </th>
+                        
+
+                        
+                    
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                 
+                    {% for item in libraries %}
+                        <tr>
+                            <td>{{item.provider_id}}</td>
+                            <td>{{item.physician_id}}</td>
+                            <td>{{item.operating_physician}}</td>
+                            <td>{{item.patient_id}}</td>
+                            <td>{{item.is_fraudulent}}</td>
+                            
+
+                        
+                            <td>
+   
+                                
+                               
+                                <a href="#" class="btn btn-outline-success waves-effect waves-light" >View</a>
+                                <a href="{% url  'dashboard:delete_claim' item.id %}" class="btn btn-outline-danger waves-effect waves-light" onclick="alert('Are you sure you want to delete')" >Delete</a>
+                               
+                            </td>
+                 {% endfor %}        
+                        </tr>
+                   
+               
+              
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+</div> <!-- end row -->
+
+{% endblock %}
+    
+{% block footer %}
+
+
+  
+<!-- datetime -->
+<script src="{% static "admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+<script src="{% static "admin/assets/js/pages/form-advanced.init.js" %}"></script>
+<script src="{% static "admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
+     <!-- Required datatable js -->
+     <script src="{% static "admin/assets/libs/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+     <script src="{% static "admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js" %}"></script>
+
+     <!-- Datatable init js -->
+     <script src="{% static "admin/assets/js/pages/datatables.init.js" %}"></script>
+{% endblock %}
+
+

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy library_form library_form.helper %}
+
+{% load static %}
+{% block header %}
+    <link href="{% static "admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<form action="" method="post" autocomplete="off" enctype="multipart/form-data">{% csrf_token %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">  
+            <div class="card-body">
+        
+                <table>{% crispy form %}</table>
+
+                
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+</form>
+{% endblock %}
+
+
+{% block footer %}
+
+    <script>
+        $('#id_data_mode').on('change', function() {
+            if(this.value == "csv" | this.value == "text"){
+                $('.data-file').css("display", 'block');
+             
+            }else{
+                $('.data-file').css("display", 'none');
+             
+            }
+        });
+    </script>
+    <script src="{% static "admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/pages/form-advanced.init.js" %}"></script>
+    <script src="{% static "admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js" %}"></script>
+{% endblock %}
+
+
+
+
+
+

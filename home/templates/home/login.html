@@ -1,0 +1,109 @@
+<html lang="en"><head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Login | Classification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin &amp; Dashboard Template" name="description">
+    <meta content="Themesdesign" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static "admin/assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+    <link href="{% static "admin/assets/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="{% static "admin/assets/css/icons.min.css" %}" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="{% static "admin/assets/css/app.min.css" %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="bg-pattern">
+    <div class="home-btn d-none d-sm-block">
+        <a href="index.html"><i class="mdi mdi-home-variant h2 text-white"></i></a>
+    </div>
+
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <a href="" class="logo"><img src="{% static "admin/assets/images/logo.png" %}" height="50" alt="logo"></a>
+                        <h5 class="font-size-16 text-white-50 mb-4">CLASSIFICATION</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="p-2">
+                                <h5 class="mb-5 text-center">Sign Health Care FRAUD Portal.</h5>
+                                <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+
+                                    <div class="row">
+                                        
+                                            {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                {% if message.tags == 'info'%}
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <strong>{{ message.tags }}: </strong>  {{ message }}.
+                                                    </div>
+                
+                                                {% else %}
+
+                                                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    <strong>{{ message.tags }}: </strong> {{ message }}
+                                                </div>
+                                                {% endif %}
+                                                <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message.tags }}</li> -->
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-4">
+                                                <label for="username">Username</label>
+                                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter username">
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label for="userpassword">Password</label>
+                                                <input type="password" name="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            </div>
+
+                                            
+                                            <div class="mt-4">
+                                                <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Log In</button>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+    <!-- end Account pages -->
+
+    <script src="{% static "admin/assets/libs/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/metismenu/metisMenu.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/simplebar/simplebar.min.js" %}"></script>
+    <script src="{% static "admin/assets/libs/node-waves/waves.min.js" %}"></script>
+
+    <script src="{% static "admin/assets/js/app.js" %}"></script>   
+
+
+
+</body></html>
