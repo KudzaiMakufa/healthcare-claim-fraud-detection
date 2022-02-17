@@ -79,6 +79,7 @@ class Library(models.Model):
 
     no_of_days_admitted = models.IntegerField(default=None)
     no_of_days_for_claim = models.IntegerField(default=None)
+
     # insurance amounts reimbursed by patient
     total_insurance_reimbursed = models.IntegerField(default=None)
     total_deductable_paid = models.IntegerField(default=None)
