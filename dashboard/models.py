@@ -1,18 +1,42 @@
 from django.db import models
+from medclaim.settings import MEDIA_ROOT
+class Provider(models.Model):
 
+    provider_id  = models.CharField(default=None ,max_length=100)
+    potential_fraud = models.CharField(default=None ,max_length=100)
+
+    def __str__(self):
+        return '%s' % self.provider_id+" potential fraud :"+self.potential_fraud
+
+class Beneficiary(models.Model):
+
+    beneficiary_id  = models.CharField(default=None ,max_length=100)
+  
+
+    def __str__(self):
+        return '%s' % self.beneficiary_id+" Hidden Name & Surname"
+
+class Physician(models.Model):
+
+    physician_id  = models.CharField(default=None ,max_length=100)
+  
+
+    def __str__(self):
+        return '%s' % self.physician_id
 
 class Library(models.Model):
     
     GENDER = (('', '------'), ('0', 'Male'),('1', 'Female'),)
     # provider details
-    provider_id  = models.CharField(default=None ,max_length=100)
+    provider_id = models.ForeignKey(Provider,on_delete=models.CASCADE , default=None)
+   
     # physician details
-    physician_id = models.CharField(default=None ,max_length=100)
-    operating_physician = models.CharField(default=None ,max_length=100)
+    physician_id = models.ForeignKey(Physician,on_delete=models.CASCADE , default=None)
+    operating_physician = models.ForeignKey(Physician,related_name='operating_physician' , on_delete=models.CASCADE , default=None)
     
-    other_physician = models.CharField(default=None ,max_length=100)
+    other_physician = models.ForeignKey(Physician,related_name='other_physician' , on_delete=models.CASCADE , default=None)
     # patient details
-    patient_id = models.CharField(default=None ,max_length=100)
+    patient_id = models.ForeignKey(Beneficiary,on_delete=models.CASCADE , default=None)
     gender = models.CharField(blank=True ,null=True, default='no' ,max_length=100 , choices = GENDER)
     race = models.CharField(default=None ,max_length=100)
     state = models.CharField(default=None ,max_length=100)
@@ -69,13 +93,4 @@ class Library(models.Model):
 
     def __str__(self):
         return '%s' % self.application_name
-
-class CVE_Scan(models.Model):
-    
-
-    cve_name = models.CharField(default=None ,max_length=100)
-
-
-    def __str__(self):
-        return '%s' % self.cve_name
 

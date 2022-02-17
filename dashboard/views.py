@@ -6,7 +6,7 @@ from django.urls.base import translate_url
 from requests.api import head
 from pypi_simple import PyPISimple 
 from dashboard.forms import Library_Form 
-from dashboard.models import  Library
+from dashboard.models import  Library, Physician, Provider , Beneficiary
 from django.contrib import messages
 from django.utils import timezone
 from django.urls import reverse
@@ -25,6 +25,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from matplotlib import pyplot as plt
 from time import sleep
+from medclaim.settings import MEDIA_ROOT
 
 
 
@@ -83,3 +84,40 @@ def delete_claim(request ,librabry_id=None):
     library.delete()
     messages.add_message(request, messages.INFO, 'Library deleted')
     return HttpResponseRedirect('/dashboard/libraries')
+
+
+def upload_data(request):
+
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        import pandas as pd
+
+        df = pd.read_csv(MEDIA_ROOT+"/uploads/Train_Inpatientdata-1542865627584.csv")
+
+
+        for index, row in df.iterrows():
+
+           
+            data = {}
+            data['physician_id'] = row['OperatingPhysician']
+            # data['potential_fraud'] = row['PotentialFraud']
+
+            # data['nationality'] = row['replace']
+            # data['allergies'] = row['replace']
+            # data['medical_aid_scheme'] = row['replace']
+            # data['medical_aid_number'] = row['replace']
+            # data['next_of_kin_name'] = row['replace']
+            # data['next_of_kin_phone_number'] = row['replace']
+           
+
+            provider = Physician.objects.create(**data)
+            provider.save()
+            print(data)
+            print("_______________________________________________")
+    context = {
+        
+        'title': "Data upload" ,
+    }
+
+    return render(request, 'dashboard/list_librabries.html', context)

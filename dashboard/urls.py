@@ -5,6 +5,7 @@ urlpatterns = [
     path('create', views.dashboard_index ,name="index"),
     path('libraries', views.dashboard_libraries ,name="libraries"),
     path('delete_claim/<int:librabry_id>', views.delete_claim , name="delete_claim"),
+    path('upload_data', views.upload_data , name="upload_data"),
    
     
 

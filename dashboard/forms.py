@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
-from dashboard.models import Library ,CVE_Scan 
+from dashboard.models import Library 
 
 # model form 
 from django.db import models
